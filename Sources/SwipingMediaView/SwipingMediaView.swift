@@ -243,7 +243,9 @@ public struct SwipingMediaItemView: View {
                           .if(mediaItem.type != .video) { view in
                               view.simultaneousGesture(
                                 TapGesture().onEnded {
-                                    withAnimation(.spring()) { swipingMediaViewSettings.isControlsVisible.toggle() }
+                                    withAnimation(.spring()) {
+                                        //swipingMediaViewSettings.isControlsVisible.toggle()
+                                    }
                                 }
                               )
                           }
@@ -468,6 +470,7 @@ struct DraggableView<Content: View>: UIViewRepresentable {
         }
         
         @objc func didDrag(gesture: UIPanGestureRecognizer) {
+            return
             let translation = gesture.translation(in: hostingController.view)
             
             if gesture.state == .began {
