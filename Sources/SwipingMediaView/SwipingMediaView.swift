@@ -190,17 +190,15 @@ public struct SwipingMediaItemView: View {
                     ZoomableScrollView {
                         KFImage(URL(string: mediaItem.url))
                             .cancelOnDisappear(true)
+                            .diskCacheExpiration(.expired)
+                            .memoryCacheExpiration(.expired)
                             .placeholder {
                                 VStack {
                                     if (isLoadingError) {
                                         Text("Error loading image")
                                             .font(.title)
                                     } else {
-                                        Image(systemName: "arrow.2.circlepath.circle")
-                                            .font(.largeTitle)
-                                            .opacity(0.3)
-                                        Text("Loading...")
-                                            .font(.title)
+                                        EmptyView()
                                     }
                                 }
                             }
