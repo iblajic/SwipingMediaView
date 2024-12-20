@@ -107,11 +107,18 @@ public struct SwipingMediaView: UIViewControllerRepresentable {
         pageViewController.view.backgroundColor = .clear
         
         // add the initial pageview item
-        let vc = controllers[startingIndex]
-        vc.view.frame = UIScreen.main.bounds
-        vc.view.backgroundColor = .clear
-        pageViewController.setViewControllers([vc], direction: .forward, animated: true)
-        
+        var index = startingIndex
+        if index >= controllers.count {
+            index = controllers.count - 1
+        }
+
+        if index >= 0 {
+            let vc = controllers[index]
+            vc.view.frame = UIScreen.main.bounds
+            vc.view.backgroundColor = .clear
+            pageViewController.setViewControllers([vc], direction: .forward, animated: true)
+        }
+
         return pageViewController
     }
     
