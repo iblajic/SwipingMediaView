@@ -55,6 +55,7 @@ public struct SwipingMediaView: UIViewControllerRepresentable {
         
         public func pageViewController(_ pageViewController: UIPageViewController,
                                        viewControllerBefore viewController: UIViewController) -> UIViewController? {
+            guard self.parent.controllers.count > 1 else { return nil }
             guard let index = self.parent.controllers.firstIndex(of: viewController) else { return nil }
             if index == 0 {
                 let vc = self.parent.controllers.last
@@ -71,6 +72,7 @@ public struct SwipingMediaView: UIViewControllerRepresentable {
         
         public func pageViewController(_ pageViewController: UIPageViewController,
                                        viewControllerAfter viewController: UIViewController) -> UIViewController? {
+            guard self.parent.controllers.count > 1 else { return nil }
             guard let index = self.parent.controllers.firstIndex(of: viewController) else { return nil }
             if index == self.parent.controllers.count - 1 {
                 let vc = self.parent.controllers.first
